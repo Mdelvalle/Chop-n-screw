@@ -1,5 +1,3 @@
-import numpy as np
-
 from echonest.remix import audio, modify
 
 
@@ -7,12 +5,16 @@ def screw(input_filename, output_filename):
     soundtouch = modify.Modify()
     audiofile = audio.LocalAudioFile(input_filename)
     beats = audiofile.analysis.beats
-    out_shape = (len(audiofile.data),)
+    out_shape = len(audiofile.data)
     out_data = audio.AudioData(shape=out_shape, numChannels=1, sampleRate=44100)
 
-    for i, beat in enumerate(beats):
-        data = audiofile[beat].data
-        new_beat = soundtouch.shiftPitchSemiTones(audiofile[beat], -6)
+    tempo = -20
+    pitch = -6
+
+    for beat in beats:
+        new_beat = soundtouch.shiftTempoChange(audiofile[beat], tempo)
+        new_beat = soundtouch.shiftPitchSemiTones(audiofile[beat], pitch)
+
         out_data.append(new_beat)
 
     out_data.encode(output_filename)
