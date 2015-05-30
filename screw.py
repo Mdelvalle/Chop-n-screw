@@ -2,21 +2,32 @@ from echonest.remix import audio, modify
 
 
 def screw(input_filename, output_filename):
+    """
+    Slow down tempo and lower the pitch
+    """
+
     soundtouch = modify.Modify()
-    audiofile = audio.LocalAudioFile(input_filename)
-    beats = audiofile.analysis.beats
-    out_shape = len(audiofile.data)
+    song = audio.LocalAudioFile(input_filename)
+    beats = song.analysis.beats
+    out_shape = len(song.data)
     out_data = audio.AudioData(shape=out_shape, numChannels=1, sampleRate=44100)
 
+    # Amount to change
     tempo = -20
     pitch = -6
 
+    print 'Slow tempo...'
+    old_data = None
     for beat in beats:
-        new_beat = soundtouch.shiftTempoChange(audiofile[beat], tempo)
-        new_beat = soundtouch.shiftPitchSemiTones(audiofile[beat], pitch)
+        if old_data is not None:
+            new_beat = soundtouch.shiftTempoChange(song[beat], tempo)
+        else:
+            new_beat = soundtouch.shiftPitchSemiTones(song[beat], pitch)
 
         out_data.append(new_beat)
+        old_data = song[beat]
 
+    print 'Encoding...'
     out_data.encode(output_filename)
 
 
