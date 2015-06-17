@@ -1,4 +1,5 @@
 from echonest.remix import audio, modify
+import random
 
 
 def screw(input_filename, output_filename):
@@ -17,12 +18,25 @@ def screw(input_filename, output_filename):
     pitch = -6
 
     print 'Slow tempo...'
+
+    beats2 = song.analysis.beats[1:]
     old_data = None
-    for beat in beats:
+
+    # Lower the pitch and the tempo.
+    # Have the same beat twice; one of them is one beat ahead of the other.
+    # There's a 10% chance of switching between them, which gives
+    # the song that 'chopping' feel.
+    for beat, beat2 in zip(beats, beats2):
         if old_data is not None:
-            new_beat = soundtouch.shiftTempoChange(song[beat], tempo)
+            if random.random() < 0.1:
+                new_beat = soundtouch.shiftTempoChange(song[beat], tempo)
+            else:
+                new_beat = soundtouch.shiftTempoChange(song[beat2], tempo)
         else:
-            new_beat = soundtouch.shiftPitchSemiTones(song[beat], pitch)
+            if random.random() < 0.1:
+                new_beat = soundtouch.shiftPitchSemiTones(song[beat], pitch)
+            else:
+                new_beat = soundtouch.shiftPitchSemiTones(song[beat2], pitch)
 
         out_data.append(new_beat)
         old_data = song[beat]
