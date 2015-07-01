@@ -2,10 +2,10 @@
 My humble attempt at taking any song you want, and [chopping and screwing](http://en.wikipedia.org/wiki/Chopped_and_screwed) it with the help of the wicked cool [Echo Nest Remix!](http://echonest.github.io/remix/)
 - Slows down the tempo
 - Reduces the pitch
+- Skips beats / repeats beats
 
 TODO:
 -----
-- Skipping beats
 - Record scratching
 - Stop-time
 
