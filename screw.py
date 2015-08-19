@@ -58,7 +58,7 @@ class ChopnScrew:
                 self.chop(idx)
 
             self.out_data.append(new_beat)
-            self.old_data = self.song[beat]
+            old_data = self.song[beat]
 
         print 'WRITIN...'
         self.out_data.encode(self.output_filename)
