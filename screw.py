@@ -4,6 +4,7 @@ import random
 
 class ChopnScrew:
     def __init__(self, input_filename, output_filename):
+        print 'INITIALIZIN...'
         self.soundtouch = modify.Modify()
         self.song = audio.LocalAudioFile(input_filename)
         self.beats = self.song.analysis.beats
@@ -30,13 +31,13 @@ class ChopnScrew:
         """
         Slow down tempo and lower the pitch.
         """
-        print 'Slow tempo...'
+        print 'SCREWIN...'
 
         old_data = None
 
         # Lower the pitch and the tempo.
         # Have the same beat twice; one of them is one beat ahead of the other.
-        # There's a 10% chance of switching between them, which gives
+        # There's a 5% chance of switching between them, which gives
         # the song that 'chopping' feel.
         for idx, (beat, beat2) in enumerate(zip(self.beats, self.beats2)):
             if old_data is not None:
@@ -54,18 +55,19 @@ class ChopnScrew:
 
             if random.random() < self.chance_of_large_chop:
                 self.chop(idx)
-            else:
-                self.out_data.append(new_beat)
 
+            self.out_data.append(new_beat)
             self.old_data = self.song[beat]
 
-        print 'Encoding...'
+        print 'WRITIN...'
         out_data.encode(output_filename)
 
     def chop(idx):
         """
         Either repeat a beat or repeat a long segment.
         """
+        print 'CHOPPIN...'
+
         # Make it go back either 4 or 8 beats.
         go_back_n_beats = random.randint(1, 2) * 8
 
