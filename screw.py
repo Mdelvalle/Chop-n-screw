@@ -10,6 +10,7 @@ class ChopnScrew:
         self.beats = self.song.analysis.beats
         self.out_shape = len(self.song.data)
         self.out_data = audio.AudioData(shape=self.out_shape, numChannels=1, sampleRate=44100)
+        self.output_filename = output_filename
 
         # Amount to change
         self.tempo = -20
@@ -20,14 +21,14 @@ class ChopnScrew:
 
         self.last_played_index = 0
 
-        self.beats2 = song.analysis.beats[1:]
+        self.beats2 = self.song.analysis.beats[1:]
 
         # hold all beats of the newly computed song for easy access later
         self.played_song = {}
 
         self.screw()
 
-    def screw():
+    def screw(self):
         """
         Slow down tempo and lower the pitch.
         """
@@ -60,9 +61,9 @@ class ChopnScrew:
             self.old_data = self.song[beat]
 
         print 'WRITIN...'
-        out_data.encode(output_filename)
+        self.out_data.encode(self.output_filename)
 
-    def chop(idx):
+    def chop(self, idx):
         """
         Either repeat a beat or repeat a long segment.
         """
