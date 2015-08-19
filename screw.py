@@ -18,6 +18,7 @@ class ChopnScrew:
 
         self.chance_of_small_chop = 0.05
         self.chance_of_large_chop = 0.10
+        self.beats_between_repeats = 40
 
         self.last_played_index = 0
 
@@ -69,7 +70,7 @@ class ChopnScrew:
         """
         print 'CHOPPIN...'
 
-        # Make it go back either 4 or 8 beats.
+        # Make it go back either 8 or 16 beats.
         go_back_n_beats = random.randint(1, 2) * 8
 
         # How many times you're allowed to play this segment.
@@ -77,7 +78,7 @@ class ChopnScrew:
         
         # Make sure you aren't going back to any beats that were just played
         # unless you go to the beginning.
-        if go_back_n_beats <= idx and idx - self.last_played_index >= 40:
+        if go_back_n_beats <= idx and idx - self.last_played_index >= self.beats_between_repeats:
             temp_beats, temp_plays = go_back_n_beats, n_time_plays
             while n_time_plays > 0:
                 while go_back_n_beats > 0:
