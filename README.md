@@ -12,7 +12,7 @@ TODO:
 Prep:
 -----
 If you want to run this program on your machine, you'll need:
---
+
 1. Python 2.7.5.
 2. Install Echo Nest Remix with <pre>sudo pip install remix</pre> or <pre>sudo easy_install remix</pre>
 3. Create an account and get a developer key from [The Echo Nest](http://developer.echonest.com/raw_tutorials/register.html)
