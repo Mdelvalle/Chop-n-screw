@@ -13,10 +13,12 @@ Prep:
 -----
 If you want to run this program on your machine, you'll need:
 
-1. Python 2.7.5.
-2. Install Echo Nest Remix with <pre>sudo pip install remix</pre> or <pre>sudo easy_install remix</pre>
-3. Create an account and get a developer key from [The Echo Nest](http://developer.echonest.com/raw_tutorials/register.html)
-4. Once you've got your key, read this [key install tutorial](https://echonest.github.io/remix/keysetup.html) for Windows, Mac or Linux.
+1. Python 2.7.10
+2. NumPy 1.6.2
+3. Echo Nest Remix 2.2.1
+4. Install Echo Nest Remix with <pre>sudo pip install remix</pre> or <pre>sudo easy_install remix</pre>
+5. Create an account and get a developer key from [The Echo Nest](http://developer.echonest.com/raw_tutorials/register.html)
+6. Once you've got your key, read this [key install tutorial](https://echonest.github.io/remix/keysetup.html) for Windows, Mac or Linux.
 
 Usage:
 ------

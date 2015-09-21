@@ -1,2 +1,5 @@
 *.mp3
 *.pyc
+*.swp
+.DS_Store
+node_modules

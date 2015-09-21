@@ -1,0 +1,33 @@
+{
+  "name": "chop-n-screw",
+  "version": "0.0.1",
+  "description": "Chop and screw your songs with the Echo Nest Remix.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mdelvalle/Chop-n-screw.git"
+  },
+  "keywords": [
+    "Echo",
+    "Nest",
+    "Remix",
+    "chop",
+    "screw",
+    "music"
+  ],
+  "author": "Miguel Del Valle",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mdelvalle/Chop-n-screw/issues"
+  },
+  "homepage": "https://github.com/Mdelvalle/Chop-n-screw#readme",
+  "dependencies": {
+    "body-parser": "^1.13.3",
+    "express": "~4.9.x",
+    "mkdirp": "^0.5.1",
+    "multer": "^1.0.3"
+  }
+}

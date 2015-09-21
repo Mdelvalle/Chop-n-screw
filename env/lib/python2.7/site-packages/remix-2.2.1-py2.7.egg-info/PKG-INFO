@@ -1,0 +1,21 @@
+Metadata-Version: 1.1
+Name: remix
+Version: 2.2.1
+Summary: The internet synthesizer. Make things with music.
+Home-page: http://developer.echonest.com/
+Author: Brian Whitman, Thor Kell
+Author-email: thor.kell@mail.mcgill.ca
+License: New BSD
+Download-URL: http://static.echonest.com/remix/packages/remix-2.2.1.tar.gz
+Description: UNKNOWN
+Platform: UNKNOWN
+Requires: os
+Requires: urllib
+Requires: httplib
+Requires: mimetypes
+Requires: tempfile
+Requires: commands
+Requires: struct
+Requires: wave
+Requires: numpy
+Requires: Numeric
