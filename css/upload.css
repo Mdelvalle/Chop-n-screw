@@ -1,0 +1,49 @@
+body {
+    background-color: black;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    color: purple; }
+
+.container {
+    position: absolute;
+    height: 70px;
+    top: 200px;
+    left: 0;
+    right: 0; }
+
+h1 {
+    font-family: 'Brush Script MT', cursive;
+    font-size: 8em;
+    color: #990077;
+    text-shadow: 0 10px #660044;
+    text-align: center; }
+
+#form-upload { 
+    text-align: center; }
+
+#uploadin  {
+    display: block;
+    visibility: hidden;
+    padding: 0;
+    width: 0;
+    height: 0; }
+
+#purp {
+    padding: 0;
+    font-family: courier;
+    width: 300px;
+    height: 60px;
+    font-size: 2em;
+    color: black;
+    border: none;
+    border-radius: 7px;
+    background: #990077;
+    box-shadow: 0 7px #660044;
+    }
+    #purp:hover, #purp:active, #purp:focus {
+        outline: none; }
+    #purp:hover {
+        background: #660044;
+        box-shadow: 0 7px #330011; }
