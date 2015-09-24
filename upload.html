@@ -9,17 +9,19 @@
         <h1>CHOP N SCREW</h1>
 
         <div class="container">
+
             <form id="form-upload" action="/upload" enctype="multipart/form-data" method="post">
                 <input id="uploadin"
                        type="file"
                        name="file"
-                       size="chars"
                        onchange="this.form.submit()"/>
+
                 <input id="purp"
                        type="button"
                        value="upload a song"
                        onclick="document.getElementById('uploadin').click()"/>
             </form>
+
         </div>
 
     </body>
