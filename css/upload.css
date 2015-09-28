@@ -9,7 +9,7 @@ body {
 .container {
     position: absolute;
     height: 70px;
-    top: 200px;
+    top: 40%;
     left: 0;
     right: 0; }
 
@@ -36,7 +36,7 @@ h1 {
     width: 300px;
     height: 60px;
     font-size: 2em;
-    color: black;
+    color: #110011;
     border: none;
     border-radius: 7px;
     background: #990077;
@@ -45,5 +45,6 @@ h1 {
     #purp:hover, #purp:active, #purp:focus {
         outline: none; }
     #purp:hover {
+        color: #330033;
         background: #660044;
         box-shadow: 0 7px #330011; }

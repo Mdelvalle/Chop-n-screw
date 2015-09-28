@@ -1,5 +1,5 @@
 var fs = require('fs');
-var child_process = require('child_process');
+var spawn = require('child_process').spawn;
 
 var express = require('express');
 var app = express();
@@ -31,7 +31,6 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/upload', upload, function(req, res, next) {
-    var username = req.body.username;
     var tmpPath = req.file.path;
     var targetPath = './uploads/' + req.file.originalname;
     var convertedPath = './uploads/' + 'CnS-' + req.file.originalname;
@@ -46,38 +45,24 @@ router.post('/upload', upload, function(req, res, next) {
                 throw err;
             }
 
-            child_process.execFile('python',
-                                   ['screw.py', targetPath, convertedPath],
-                                   function(err, stdout, stderr) {
-                                       if (err) {
-                                           console.log(stderr);
-                                           console.log(stdout);
-                                           console.log(err);
+            var child = spawn('python', ['screw.py', targetPath, convertedPath]);
 
-                                           throw err;
-                                       }
+            child.stdout.on('data', function(data) {
+                console.log(data.toString());
+            });
 
-                                       console.log(stdout);
-
-                                       fs.unlink(targetPath, function(err) {
-                                           if (err) {
-                                               throw err;
-                                           }
-                                       });
-
-                                       res.download(convertedPath);
-                                   });
+            child.on('close', function(code, signal) {
+                res.download(convertedPath, function() {
+                    fs.unlink(targetPath, function(err) {
+                        if (err) {
+                            throw err;
+                        }
+                    });
+                });
+            });
         });
     });
 });
-
-//app.get('/download', function(req, res, next) {
-//	  res.download('');
-//});
-
-//app.get('/analyze', function(req, res, next) {
-//	  res.send('analyzing...');
-//});
 
 app.listen(app.get('port'), function() {
     console.log('Node app is running on port', app.get('port'));

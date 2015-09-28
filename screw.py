@@ -1,10 +1,12 @@
 from echonest.remix import audio, modify
 import random
+import sys
 
 
 class ChopnScrew:
     def __init__(self, input_filename, output_filename):
         print 'INITIALIZIN...'
+        sys.stdout.flush()
         self.soundtouch = modify.Modify()
         self.song = audio.LocalAudioFile(input_filename)
         self.beats = self.song.analysis.beats
@@ -34,6 +36,7 @@ class ChopnScrew:
         Slow down tempo and lower the pitch.
         """
         print 'SCREWIN...'
+        sys.stdout.flush()
 
         old_data = None
 
@@ -62,6 +65,7 @@ class ChopnScrew:
             old_data = self.song[beat]
 
         print 'WRITIN...'
+        sys.stdout.flush()
         self.out_data.encode(self.output_filename)
 
     def chop(self, idx):
@@ -69,6 +73,7 @@ class ChopnScrew:
         Either repeat a beat or repeat a long segment.
         """
         print 'CHOPPIN...'
+        sys.stdout.flush()
 
         # Make it go back either 8 or 16 beats.
         go_back_n_beats = random.randint(1, 2) * 8
@@ -91,8 +96,6 @@ class ChopnScrew:
 
 
 def main():
-    import sys
-
     usage = """
     Usage:
         python screw.py <input_filename> <output_filename>
@@ -108,6 +111,7 @@ def main():
     except:
         # If things go wrong, exit!
         print usage
+        sys.stdout.flush()
         sys.exit(-1)
 
     chopped_n_screwed = ChopnScrew(input_filename, output_filename)
