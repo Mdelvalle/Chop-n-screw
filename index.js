@@ -1,13 +1,11 @@
-var fs = require('fs');
-var spawn = require('child_process').spawn;
-
-var express = require('express');
-var app = express();
-var router = express.Router();
-
-var multer = require('multer');
-var bodyParser = require('body-parser');
-var mkdirp = require('mkdirp');
+var fs = require('fs'),
+    spawn = require('child_process').spawn,
+    express = require('express'),
+    app = express(),
+    router = express.Router(),
+    multer = require('multer'),
+    bodyParser = require('body-parser'),
+    mkdirp = require('mkdirp');
 
 
 /**

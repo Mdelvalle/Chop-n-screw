@@ -10,6 +10,7 @@ class ChopnScrew:
         self.soundtouch = modify.Modify()
         self.song = audio.LocalAudioFile(input_filename)
         self.beats = self.song.analysis.beats
+        self.beats2 = self.song.analysis.beats[1:]
         self.out_shape = len(self.song.data)
         self.out_data = audio.AudioData(shape=self.out_shape, numChannels=1, sampleRate=44100)
         self.output_filename = output_filename
@@ -23,8 +24,6 @@ class ChopnScrew:
         self.beats_between_repeats = 40
 
         self.last_played_index = 0
-
-        self.beats2 = self.song.analysis.beats[1:]
 
         # hold all beats of the newly computed song for easy access later
         self.played_song = {}
@@ -44,17 +43,17 @@ class ChopnScrew:
         # Have the same beat twice; one of them is one beat ahead of the other.
         # There's a 5% chance of switching between them, which gives
         # the song that 'chopping' feel.
-        for idx, (beat, beat2) in enumerate(zip(self.beats, self.beats2)):
+	for idx, beat in enumerate(self.beats):
             if old_data is not None:
-                if random.random() <= self.chance_of_small_chop:
+                if random.random() < self.chance_of_small_chop:
+		    new_beat = self.soundtouch.shiftTempoChange(self.song[self.beats[idx-1]], self.tempo)
+                else:
                     new_beat = self.soundtouch.shiftTempoChange(self.song[beat], self.tempo)
-                else:
-                    new_beat = self.soundtouch.shiftTempoChange(self.song[beat2], self.tempo)
             else:
-                if random.random() <= self.chance_of_small_chop:
-                    new_beat = self.soundtouch.shiftPitchSemiTones(self.song[beat], self.pitch)
+                if random.random() < self.chance_of_small_chop:
+                    new_beat = self.soundtouch.shiftPitchSemiTones(self.song[self.beats[idx-1]], self.pitch)
                 else:
-                    new_beat = self.soundtouch.shiftPitchSemiTones(self.song[beat2], self.pitch)
+                    new_beat = self.soundtouch.shiftPitchSemiTones(self.song[beat], self.pitch)
 
             self.played_song[idx] = new_beat
 
@@ -79,7 +78,7 @@ class ChopnScrew:
         go_back_n_beats = random.randint(1, 2) * 8
 
         # How many times you're allowed to play this segment.
-        n_time_plays = random.randint(1, 2)
+        n_time_plays = 1  #random.randint(1, 2)
         
         # Make sure you aren't going back to any beats that were just played
         # unless you go to the beginning.
