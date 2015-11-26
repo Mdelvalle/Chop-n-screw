@@ -19,7 +19,7 @@ class ChopnScrew:
         self.tempo = -20
         self.pitch = -6
 
-        self.chance_of_small_chop = 0.45
+        self.chance_of_small_chop = 0.25
         self.chance_of_large_chop = 0.10
         self.beats_between_repeats = 40
 
@@ -45,7 +45,12 @@ class ChopnScrew:
         # the song that 'chopping' feel.
         upbeat = 0
         can_chop = True
+        can_start = False
+        l = len(self.beats)
 	for idx, beat in enumerate(self.beats):
+            if idx >= 14 and (idx <= (l - 14)):
+                can_start = True
+
             if upbeat > 3:
                 upbeat = 0
             else:
@@ -53,14 +58,14 @@ class ChopnScrew:
 
             # Only chop if current beat is the downbeat and the last beat wasn't chopped
             if old_data is not None:
-                if can_chop and upbeat == 0 and random.random() < self.chance_of_small_chop:
+                if can_start and can_chop and upbeat == 1 and random.random() < self.chance_of_small_chop:
 		    new_beat = self.soundtouch.shiftTempoChange(self.song[self.beats[idx+1]], self.tempo)
                     can_chop = False
                 else:
                     new_beat = self.soundtouch.shiftTempoChange(self.song[beat], self.tempo)
                     can_chop = True
             else:
-                if can_chop and upbeat == 0 and random.random() < self.chance_of_small_chop:
+                if can_start and can_chop and upbeat == 1 and random.random() < self.chance_of_small_chop:
                     new_beat = self.soundtouch.shiftPitchSemiTones(self.song[self.beats[idx+1]], self.pitch)
                     can_chop = False
                 else:
@@ -69,7 +74,7 @@ class ChopnScrew:
 
             self.played_song[idx] = new_beat
 
-            if random.random() < self.chance_of_large_chop:
+            if can_chop and upbeat == 0 and random.random() < self.chance_of_large_chop:
                 self.chop(idx)
 
             self.out_data.append(new_beat)
