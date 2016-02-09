@@ -1,6 +1,7 @@
 from echonest.remix import audio, modify
 import random
 import sys
+import errno
 
 
 class ChopnScrew:
@@ -95,8 +96,8 @@ class ChopnScrew:
         go_back_n_beats = random.randint(1, 2) * 8
 
         # How many times you're allowed to play this segment.
-        n_time_plays = 1  #random.randint(1, 2)
-        
+        n_time_plays = 1
+
         # Make sure you aren't going back to any beats that were just played
         # unless you go to the beginning.
         if go_back_n_beats <= idx and idx - self.last_played_index >= self.beats_between_repeats:
@@ -129,9 +130,14 @@ def main():
         print usage
         sys.stdout.flush()
         sys.exit(-1)
+    try:
+        chopped_n_screwed = ChopnScrew(input_filename, output_filename)
+    except:
+        e = sys.exc_info()
+        print e
+        sys.stdout.flush()
+        sys.exit(-1)
 
-    chopped_n_screwed = ChopnScrew(input_filename, output_filename)
-    
 
 if __name__ == '__main__':
     main()

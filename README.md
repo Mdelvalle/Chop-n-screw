@@ -20,8 +20,11 @@ If you want to run this program on your machine, you'll need:
 6. Create an account and get a developer key from [The Echo Nest](http://developer.echonest.com/raw_tutorials/register.html)
 7. Once you've got your key, read this [key install tutorial](https://echonest.github.io/remix/keysetup.html) for Windows, Mac or Linux.
 
-And then:
+Then:
 <pre>npm install</pre>
+
+And:
+<pre>source env/bin/activate</pre>
 
 Or:
 =====

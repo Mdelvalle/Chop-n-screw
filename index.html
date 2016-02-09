@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Purps</title>
+  <meta name="description" content="Chop and Screw any song you want with a click of a button and the help of The Echo Nest Remix.">
+  <meta name="author" content="Miguel Del Valle">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" href="css/upload.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+  <script>
+    function clickit() {
+      document.getElementById('uploadin').click();
+    }
+
+    // Inform user that the song is being processed.
+    function changin() {
+      document.getElementById('uploadForm').submit();
+      status('Processing. Please wait...');
+    }
+
+    function status(message) {
+      document.getElementById('status').innerHTML = message;
+    }
+  </script>
+
+</head>
+<body>
+
+  <p id="info">
+    Ever wanted to slow down your songs in the style of
+    <a href="https://en.wikipedia.org/wiki/DJ_Screw" target="_blank">DJ Screw</a>?
+    Upload your favorite song and check it out.
+  </p>
+
+  <div>
+    <span id="status">
+      <form id="uploadForm" action="/upload" enctype="multipart/form-data" method="post">
+        <input id="uploadin"
+        type="file"
+        name="file"
+        onchange="changin()"/>
+
+        <input id="purp"
+        type="button"
+        value="upload"
+        onclick="clickit()"/>
+      </form>
+    </span>
+  </div>
+
+  <footer>
+    <p id="author">Made with <3 by
+      <a href="http://mdelvalle.github.io/" target="_blank">
+        Mi
+      </a>
+    </p>
+    <p id="github">Follow me on
+      <a href="https://github.com/Mdelvalle/Chop-n-screw" target="_blank">
+        Github
+      </a>
+    </p>
+  </footer>
+
+  <!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
