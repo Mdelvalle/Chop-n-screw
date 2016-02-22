@@ -20,7 +20,7 @@ If you want to run this program on your machine, you'll need:
 
 1. Node.js version 5.0.0
 2. Python 2.7.10 and Pip
-3. An account and a developer key from [The Echo Nest](http://developer.echonest.com/raw_tutorials/register.html) + [how to set your key up](https://echonest.github.io/remix/keysetup.html).
+3. An account and a developer key from [The Echo Nest](http://developer.echonest.com/raw_tutorials/register.html) + [key up](https://echonest.github.io/remix/keysetup.html).
 4. FFMPEG
 
 [Here's]() The Echo Nest instructions on the matter, just in case.
@@ -28,7 +28,8 @@ If you want to run this program on your machine, you'll need:
 Installation/building:
 ---------------------
 First:
-<pre>pip install -r requirements.txt</pre>
+<pre>pip install numpy==1.6.2</pre>
+<pre>pip install git+https://github.com/Mdelvalle/remix.git</pre>
 
 Then:
 <pre>npm install</pre>
